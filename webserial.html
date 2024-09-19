@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>串口监视器</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #output {
+            width: 100%;
+            height: 300px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            overflow-y: scroll;
+            white-space: pre-wrap;
+            background-color: #f9f9f9;
+        }
+        #controls {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>串口监视器</h1>
+    <div id="output"></div>
+    <div id="controls">
+        <button id="connectButton">连接</button>
+        <button id="disconnectButton" disabled>断开连接</button>
+        <br>
+        <label for="baudRate">波特率:</label>
+        <select id="baudRate">
+            <option value="9600">9600</option>
+            <option value="115200">115200</option>
+            <!-- 添加其他波特率选项 -->
+        </select>
+        <br>
+        <label for="dataBits">数据位:</label>
+        <select id="dataBits">
+            <option value="8">8</option>
+            <option value="7">7</option>
+            <!-- 添加其他数据位选项 -->
+        </select>
+        <br>
+        <label for="parity">校验位:</label>
+        <select id="parity">
+            <option value="none">无</option>
+            <option value="even">偶校验</option>
+            <option value="odd">奇校验</option>
+            <!-- 添加其他校验位选项 -->
+        </select>
+        <br>
+        <label for="stopBits">停止位:</label>
+        <select id="stopBits">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <!-- 添加其他停止位选项 -->
+        </select>
+        <br>
+        <label for="rts">RTS:</label>
+        <input type="checkbox" id="rts">
+        <br>
+        <label for="dtr">DTR:</label>
+        <input type="checkbox" id="dtr">
+    </div>
+
+    <script>
+        let port;
+        let reader;
+        const outputElement = document.getElementById('output');
+        const connectButton = document.getElementById('connectButton');
+        const disconnectButton = document.getElementById('disconnectButton');
+        const baudRateSelect = document.getElementById('baudRate');
+        const dataBitsSelect = document.getElementById('dataBits');
+        const paritySelect = document.getElementById('parity');
+        const stopBitsSelect = document.getElementById('stopBits');
+        const rtsCheckbox = document.getElementById('rts');
+        const dtrCheckbox = document.getElementById('dtr');
+
+        connectButton.addEventListener('click', async () => {
+            try {
+                port = await navigator.serial.requestPort();
+                const options = {
+                    baudRate: parseInt(baudRateSelect.value),
+                    dataBits: parseInt(dataBitsSelect.value),
+                    parity: paritySelect.value,
+                    stopBits: parseInt(stopBitsSelect.value),
+                    rts: rtsCheckbox.checked,
+                    dtr: dtrCheckbox.checked
+                };
+                await port.open(options);
+                connectButton.disabled = true;
+                disconnectButton.disabled = false;
+                readFromPort();
+            } catch (error) {
+                console.error('连接失败:', error);
+            }
+        });
+
+        disconnectButton.addEventListener('click', async () => {
+            if (reader) {
+                await reader.cancel();
+            }
+            await port.close();
+            connectButton.disabled = false;
+            disconnectButton.disabled = true;
+        });
+
+        rtsCheckbox.addEventListener('change', async () => {
+            if (port) {
+                await port.setSignals({ rts: rtsCheckbox.checked });
+            }
+        });
+
+        dtrCheckbox.addEventListener('change', async () => {
+            if (port) {
+                await port.setSignals({ dtr: dtrCheckbox.checked });
+            }
+        });
+
+        async function readFromPort() {
+            const textDecoder = new TextDecoderStream();
+            const readableStreamClosed = port.readable.pipeTo(textDecoder.writable);
+            reader = textDecoder.readable.getReader();
+
+            try {
+                while (true) {
+                    const { value, done } = await reader.read();
+                    if (done) {
+                        break;
+                    }
+                    outputElement.textContent += value;
+                    outputElement.scrollTop = outputElement.scrollHeight;
+                }
+            } catch (error) {
+                console.error('读取失败:', error);
+            } finally {
+                reader.releaseLock();
+            }
+        }
+    </script>
+</body>
+</html>
