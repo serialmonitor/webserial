@@ -1,6 +1,6 @@
 {
     "manifest_version": 3,
-    "name": "串口监视器插件",
+    "name": "串口监视器",
     "version": "1.0",
     "description": "一个用于串口监视的 Chrome 插件。",
     "action": {
@@ -11,9 +11,6 @@
             "128": "icon.png"
         }
     },
-    "permissions": [
-        "serial"
-    ],
     "background": {
         "service_worker": "background.js"
     },
