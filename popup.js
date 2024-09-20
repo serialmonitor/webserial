@@ -1,34 +1,15 @@
-const outputElement = document.getElementById('output');
-const connectButton = document.getElementById('connectButton');
-const disconnectButton = document.getElementById('disconnectButton');
-
-connectButton.addEventListener('click', async () => {
-    try {
-        port = await navigator.serial.requestPort();
-        const options = {
-            baudRate: parseInt(baudRateSelect.value),
-            dataBits: parseInt(dataBitsSelect.value),
-            parity: paritySelect.value,
-            stopBits: parseInt(stopBitsSelect.value),
-            rts: rtsCheckbox.checked,
-            dtr: dtrCheckbox.checked
-        };
-        await port.open(options);
-        outputElement.textContent += "连接成功\n";
-        disconnectButton.disabled = false;
-        connectButton.disabled = true;
-        readFromPort();
-    } catch (error) {
-        outputElement.textContent += `连接失败: ${error}\n`;
+window.onload = () => {
+    openpage();
+    function openpage() {
+        chrome.windows.getCurrent((currentWindow) => {
+            chrome.windows.update(currentWindow.id, { focused: true });
+            chrome.windows.create({
+                url: "src/index.html"
+                // ,
+                // type: "popup"
+            }, (createdWindow) => {
+                chrome.windows.update(createdWindow.id, { focused: true });
+            });
+        });
     }
-});
-
-disconnectButton.addEventListener('click', async () => {
-    if (reader) {
-        await reader.cancel();
-    }
-    await port.close();
-    outputElement.textContent += "已断开连接\n";
-    disconnectButton.disabled = true;
-    connectButton.disabled = false;
-});
+}
