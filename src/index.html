@@ -11,19 +11,34 @@
 </head>
 
 <body>
+    <div class="top-bar">
+        顶部横栏
+        <div class="top-bar-buttons"> <!-- 添加一个容器以使用 flexbox 布局 -->
+            <button class="btn waves-effect waves-light" id="connect">Connect</button>
+            <button class="btn waves-effect waves-light" id="settingsButton">⚙️</button> <!-- 添加齿轮按钮 -->
+        </div>
+        <div id="settingsMenu" class="hidden"> <!-- 添加选项卡菜单 -->
+            <div>Serial Connection</div>
+            <div>115200</div>
+            <div>\r\n</div>
+            <div>Show input (echo)</div>
+            <div>Show timestamps</div>
+            <div>Detect CTRL+C, CTRL+D</div>
+        </div>
+    </div> <!-- 添加顶部横栏 -->
     <div class="wrapper">
         <div id="notSupported">Sorry, Web Serial is not supported on this device, make sure you're running Chrome 78 or
             later and have enabled the #enable-experimental-web-platform-features flag in chrome://flags</div>
-        <div>
-            <!-- 使用 Material-UI 的按钮 -->
-            <button class="btn waves-effect waves-light" id="connect">Connect</button>
-        </div>
+
         <div id="log"></div>
         <div>
-            <input id="input" type="text" disabled />
-            <button class="btn waves-effect waves-light" id="sendButton" disabled>Send</button>
+            <div style="display: flex; align-items: center;"> <!-- 添加一个容器以使用 flexbox 布局 -->
+                <input id="input" type="text" disabled />
+                <button class="btn waves-effect waves-light" id="sendButton" disabled>Send</button>
+            </div> <!-- 结束容器 -->
         </div>
     </div>
+    <div class="bottom-bar">底部横栏</div> <!-- 添加底部横栏 -->
     <script src="source.js"></script>
 </body>
 

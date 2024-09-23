@@ -6,9 +6,12 @@ if ('serial' in navigator) {
 const log = document.getElementById("log")
 
 // 添加事件监听器
-document.getElementById('connect').addEventListener('click', connect);
-document.getElementById('sendButton').addEventListener('click', send);
-document.getElementById('input').addEventListener('keypress', handle);
+window.onload = function() {
+    document.getElementById('connect').addEventListener('click', connect);
+    document.getElementById('sendButton').addEventListener('click', send);
+    document.getElementById('input').addEventListener('keypress', handle);
+    document.getElementById('settingsButton').addEventListener('click', toggleSettingsMenu); // 确保添加了这个监听器
+};
 
 function send() {
     const toSend = document.getElementById("input").value;
@@ -75,5 +78,16 @@ async function readLoop() {
             reader.releaseLock();
             break;
         }
+    }
+}
+
+function toggleSettingsMenu() {
+    console.log('Toggle settings menu called'); // 调试信息
+    const settingsMenu = document.getElementById('settingsMenu');
+    settingsMenu.classList.toggle('hidden'); // 切换菜单的显示状态
+    if (!settingsMenu.classList.contains('hidden')) {
+        settingsMenu.style.display = 'block'; // 显示菜单
+    } else {
+        settingsMenu.style.display = 'none'; // 隐藏菜单
     }
 }
