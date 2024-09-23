@@ -1,11 +1,9 @@
 .wrapper {
     width: 60%;
     margin: 20px auto;
-    /* 添加上边距以增加空隙 */
     font-family: 'Roboto', sans-serif;
-    /* 使用 Material-UI 字体 */
-    /* height: calc(100vh - 120px); 减去顶部和底部横栏的高度 */
-    /* overflow: auto; 添加滚动条以便在需要时显示 */
+    height: calc(100vh - 80px);
+    overflow: auto;
 }
 
 #input {
@@ -16,131 +14,105 @@
     height: 80vh;
     width: 100%;
     overflow: auto;
-    /* 改为 auto 以便在需要时显示滚动条 */
     background-color: black;
     color: white;
     white-space: pre;
     border: 1px solid #444;
-    /* 添加边框以改善外观 */
     border-radius: 5px;
-    /* 添加圆角 */
     padding: 10px;
-    /* 添加内边距 */
 }
 
 .hidden {
     display: none;
-    /* 确保隐藏元素 */
 }
 
 * {
     box-sizing: border-box;
 }
 
-.top-bar,
-.bottom-bar {
+.top-bar {
     width: 100%;
     background-color: #333;
-    /* 横栏背景颜色 */
     color: white;
-    /* 字体颜色 */
     text-align: center;
-    /* 文本居中 */
     padding: 10px 0;
-    /* 内边距 */
-}
-
-.top-bar {
     display: flex;
-    /* 使用 flexbox 布局 */
     justify-content: space-between;
-    /* 在横栏中分配空间 */
     align-items: center;
-    /* 垂直居中对齐 */
-    padding: 10px;
-    /* 内边距 */
 }
 
 .top-bar-buttons {
     display: flex;
-    /* 使用 flexbox 布局 */
     align-items: center;
-    /* 垂直居中对齐 */
     margin-left: auto;
-    /* 将按钮推到右侧 */
 }
 
 /* 自定义滚动条样式 */
-#log::-webkit-scrollbar {
+/* #log::-webkit-scrollbar {
     width: 8px;
-    /* 滚动条宽度 */
-}
+} */
 
-#log::-webkit-scrollbar-thumb {
+/* #log::-webkit-scrollbar-thumb {
     background: #555;
-    /* 滚动条颜色 */
     border-radius: 4px;
-    /* 圆角 */
-}
+} */
 
-#log::-webkit-scrollbar-track {
+/* #log::-webkit-scrollbar-track {
     background: #222;
-    /* 滚动条轨道颜色 */
-}
+} */
 
 html,
 body {
     overflow: hidden;
-    /* 隐藏整个页面的滑动条 */
     height: 100%;
-    /* 确保页面高度为100% */
 }
 
 #settingsMenu {
-    position: absolute;
-    /* 绝对定位 */
+    position: fixed;
     background-color: white;
-    /* 背景颜色 */
     border: 1px solid #ccc;
-    /* 边框 */
     border-radius: 5px;
-    /* 圆角 */
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    /* 阴影 */
     display: none;
-    /* 默认隐藏 */
     z-index: 1000;
-    /* 确保在其他元素之上 */
-    top: 50px;
-    /* 根据需要调整位置 */
-    right: 10px;
-    /* 根据需要调整位置 */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    padding: 20px;
+    color: black;
+}
+
+#settingsMenu h3 {
+    margin: 0 0 10px;
 }
 
 #settingsMenu div {
-    padding: 10px;
-    /* 内边距 */
-    cursor: pointer;
-    /* 鼠标指针样式 */
+    margin-bottom: 10px;
 }
 
-#settingsMenu div:hover {
-    background-color: #f0f0f0;
-    /* 悬停效果 */
+#settingsMenu label {
+    display: block;
+}
+
+#settingsMenu select {
+    width: 100%;
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background-color: white;
+    color: black;
+}
+
+#settingsMenu input[type="checkbox"] {
+    margin-right: 5px;
 }
 
 #settingsButton {
-    /* border: none; 去掉边框 */
     background: transparent;
-    /* 背景透明 */
     color: white;
-    /* 确保文字颜色为白色 */
     cursor: pointer;
-    /* 鼠标指针样式 */
     padding: 10;
-    /* 去掉内边距 */
     margin: 10;
-    /* 去掉外边距 */
     font-size: 16px;
-    /* 根据需要调整图标大小 */
 }

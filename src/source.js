@@ -3,14 +3,14 @@ if ('serial' in navigator) {
     notSupported.classList.add('hidden');
 }
 
-const log = document.getElementById("log")
+const log = document.getElementById("log");
 
 // 添加事件监听器
 window.onload = function() {
     document.getElementById('connect').addEventListener('click', connect);
     document.getElementById('sendButton').addEventListener('click', send);
     document.getElementById('input').addEventListener('keypress', handle);
-    document.getElementById('settingsButton').addEventListener('click', toggleSettingsMenu); // 确保添加了这个监听器
+    document.getElementById('settingsButton').addEventListener('click', toggleSettingsMenu);
 };
 
 function send() {
@@ -35,11 +35,8 @@ async function connect() {
     document.getElementById("connect").disabled = true;
 
     port = await navigator.serial.requestPort();
-    // - Wait for the port to open.
     await port.open({ baudRate: 115200 });
     console.log('Open');
-
-
 
     let decoder = new TextDecoderStream();
     inputDone = port.readable.pipeTo(decoder.writable);
@@ -65,10 +62,6 @@ async function readLoop() {
 
     while (true) {
         const { value, done } = await reader.read();
-        console.log('value', value);
-        console.log('done', done);
-
-
         if (value) {
             log.textContent += value;
             log.scrollTop = log.scrollHeight;
@@ -82,12 +75,8 @@ async function readLoop() {
 }
 
 function toggleSettingsMenu() {
-    console.log('Toggle settings menu called'); // 调试信息
+    console.log('Toggle settings menu called');
     const settingsMenu = document.getElementById('settingsMenu');
-    settingsMenu.classList.toggle('hidden'); // 切换菜单的显示状态
-    if (!settingsMenu.classList.contains('hidden')) {
-        settingsMenu.style.display = 'block'; // 显示菜单
-    } else {
-        settingsMenu.style.display = 'none'; // 隐藏菜单
-    }
+    settingsMenu.classList.toggle('hidden');
+    settingsMenu.style.display = settingsMenu.classList.contains('hidden') ? 'none' : 'block';
 }
