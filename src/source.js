@@ -5,6 +5,10 @@ if ('serial' in navigator) {
 
 const log = document.getElementById("log")
 
+// 添加事件监听器
+document.getElementById('connect').addEventListener('click', connect);
+document.getElementById('sendButton').addEventListener('click', send);
+document.getElementById('input').addEventListener('keypress', handle);
 
 function send() {
     const toSend = document.getElementById("input").value;
