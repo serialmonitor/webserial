@@ -1,53 +1,30 @@
 <!DOCTYPE html>
-<html lang="zh-cn">
+<html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>串口监视器</title>
-    <link rel="stylesheet" href="styles.css">
+    <meta charset="utf-8">
+    <title></title>
+    <link href="style.css" rel="stylesheet" />
+    <!-- 添加 Material-UI 样式 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
 </head>
+
 <body>
-    <h1>串口监视器</h1>
-    <div id="output"></div>
-    <div id="controls">
-        <button id="connectButton">连接</button>
-        <button id="disconnectButton" disabled>断开连接</button>
-        <br>
-        <label for="baudRate">波特率:</label>
-        <select id="baudRate">
-            <option value="9600">9600</option>
-            <option value="115200">115200</option>
-            <!-- 添加其他波特率选项 -->
-        </select>
-        <br>
-        <label for="dataBits">数据位:</label>
-        <select id="dataBits">
-            <option value="8">8</option>
-            <option value="7">7</option>
-            <!-- 添加其他数据位选项 -->
-        </select>
-        <br>
-        <label for="parity">校验位:</label>
-        <select id="parity">
-            <option value="none">无</option>
-            <option value="even">偶校验</option>
-            <option value="odd">奇校验</option>
-            <!-- 添加其他校验位选项 -->
-        </select>
-        <br>
-        <label for="stopBits">停止位:</label>
-        <select id="stopBits">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <!-- 添加其他停止位选项 -->
-        </select>
-        <br>
-        <label for="rts">RTS:</label>
-        <input type="checkbox" id="rts">
-        <br>
-        <label for="dtr">DTR:</label>
-        <input type="checkbox" id="dtr">
+    <div class="wrapper">
+        <div id="notSupported">Sorry, Web Serial is not supported on this device, make sure you're running Chrome 78 or
+            later and have enabled the #enable-experimental-web-platform-features flag in chrome://flags</div>
+        <div>
+            <!-- 使用 Material-UI 的按钮 -->
+            <button class="btn waves-effect waves-light" id="connect" onClick="connect()">Connect</button>
+        </div>
+        <div id="log"></div>
+        <div>
+            <input id="input" type="text" onKeyPress="handle(event)" disabled />
+            <button class="btn waves-effect waves-light" id="sendButton" onClick="send()" disabled>Send</button>
+        </div>
     </div>
-    <script src="index.js"></script>
+    <script src="source.js"></script>
 </body>
+
 </html>

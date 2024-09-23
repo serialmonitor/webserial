@@ -3,12 +3,10 @@ window.onload = () => {
     function openpage() {
         chrome.windows.getCurrent((currentWindow) => {
             chrome.windows.update(currentWindow.id, { focused: true });
-            chrome.windows.create({
+            chrome.tabs.create({
                 url: "src/index.html"
-                // ,
-                // type: "popup"
-            }, (createdWindow) => {
-                chrome.windows.update(createdWindow.id, { focused: true });
+            }, (createdTab) => {
+                chrome.tabs.update(createdTab.id, { active: true });
             });
         });
     }
