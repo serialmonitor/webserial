@@ -28,7 +28,7 @@ function handle(e) {
 
 async function connect() {
     const inputField = document.getElementById("input");
-    inputField.disabled = false;
+    inputField.disabled = false; // 启用输入框
     inputField.focus();
     inputField.select();
     document.getElementById("sendButton").disabled = false;
@@ -75,8 +75,8 @@ async function readLoop() {
 }
 
 function toggleSettingsMenu() {
-    console.log('Toggle settings menu called');
     const settingsMenu = document.getElementById('settingsMenu');
     settingsMenu.classList.toggle('hidden');
-    settingsMenu.style.display = settingsMenu.classList.contains('hidden') ? 'none' : 'block';
+    // 确保在显示时使用 flex
+    settingsMenu.style.display = settingsMenu.classList.contains('hidden') ? 'none' : 'flex';
 }

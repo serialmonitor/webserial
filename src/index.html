@@ -18,32 +18,32 @@
         </div>
         <div id="settingsMenu" class="hidden">
             <h3>Settings</h3>
-            <div>
-                <label>Serial Connection</label>
-                <select>
+            <div class="setting-item">
+                <label for="serialConnection">Serial Connection</label>
+                <select id="serialConnection">
                     <option>115200 baud</option>
                     <option>9600 baud</option>
                     <option>4800 baud</option>
                 </select>
             </div>
-            <div>
-                <label>Line Ending</label>
-                <select>
+            <div class="setting-item">
+                <label for="lineEnding">Line Ending</label>
+                <select id="lineEnding">
                     <option>\r\n</option>
                     <option>\n</option>
                     <option>\r</option>
                 </select>
             </div>
-            <div>
+            <div class="setting-item">
                 <label><input type="checkbox" checked> Show input (echo)</label>
             </div>
-            <div>
+            <div class="setting-item">
                 <label><input type="checkbox" checked> Show timestamps</label>
             </div>
-            <div>
+            <div class="setting-item">
                 <label><input type="checkbox" checked> Detect CTRL+C, CTRL+D</label>
             </div>
-            <div style="display: flex; justify-content: space-between;">
+            <div class="button-group">
                 <button class="btn red">RESET</button>
                 <button class="btn">CANCEL</button>
                 <button class="btn blue">SAVE</button>
@@ -51,7 +51,8 @@
         </div>
     </div>
     <div class="wrapper">
-        <div id="notSupported">Sorry, Web Serial is not supported on this device, make sure you're running Chrome 78 or later and have enabled the #enable-experimental-web-platform-features flag in chrome://flags</div>
+        <div id="notSupported">Sorry, Web Serial is not supported on this device, make sure you're running Chrome 78 or
+            later and have enabled the #enable-experimental-web-platform-features flag in chrome://flags</div>
         <div id="log"></div>
         <div>
             <div style="display: flex; align-items: center;">
@@ -59,8 +60,7 @@
                 <button class="btn waves-effect waves-light" id="sendButton" disabled>Send</button>
             </div>
         </div>
-    </div>
-    <script src="source.js"></script>
+        <script src="source.js"></script>
 </body>
 
 </html>
