@@ -6,11 +6,18 @@ if ('serial' in navigator) {
 const log = document.getElementById("log");
 
 // 添加事件监听器
-window.onload = function() {
+window.onload = function () {
     document.getElementById('connect').addEventListener('click', connect);
     document.getElementById('sendButton').addEventListener('click', send);
     document.getElementById('input').addEventListener('keypress', handle);
     document.getElementById('settingsButton').addEventListener('click', toggleSettingsMenu);
+
+    // 初始化设置菜单的值
+    document.getElementById('serialConnection').value = "115200";
+    document.getElementById('lineEnding').value = "\r\n";
+    document.getElementById('showInput').checked = true;
+    document.getElementById('showTimestamps').checked = true;
+    document.getElementById('detectCtrl').checked = true;
 };
 
 function send() {

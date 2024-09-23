@@ -21,32 +21,31 @@
             <div class="setting-item">
                 <label for="serialConnection">Serial Connection</label>
                 <select id="serialConnection">
-                    <option>115200 baud</option>
-                    <option>9600 baud</option>
-                    <option>4800 baud</option>
+                    <option value="115200">115200 baud</option>
+                    <option value="9600">9600 baud</option>
+                    <option value="4800">4800 baud</option>
                 </select>
             </div>
             <div class="setting-item">
                 <label for="lineEnding">Line Ending</label>
                 <select id="lineEnding">
-                    <option>\r\n</option>
-                    <option>\n</option>
-                    <option>\r</option>
+                    <option value="\r\n">\r\n</option>
+                    <option value="\n">\n</option>
+                    <option value="\r">\r</option>
                 </select>
             </div>
             <div class="setting-item">
-                <label><input type="checkbox" checked> Show input (echo)</label>
+                <label for="showInput"><input type="checkbox" id="showInput" checked> Show input (echo)</label>
             </div>
             <div class="setting-item">
-                <label><input type="checkbox" checked> Show timestamps</label>
+                <label for="showTimestamps"><input type="checkbox" id="showTimestamps" checked> Show timestamps</label>
             </div>
             <div class="setting-item">
-                <label><input type="checkbox" checked> Detect CTRL+C, CTRL+D</label>
+                <label for="detectCtrl"><input type="checkbox" id="detectCtrl" checked> Detect CTRL+C, CTRL+D</label>
             </div>
             <div class="button-group">
                 <button class="btn red">RESET</button>
                 <button class="btn">CANCEL</button>
-                <button class="btn blue">SAVE</button>
             </div>
         </div>
     </div>
