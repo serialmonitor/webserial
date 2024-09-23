@@ -51,7 +51,7 @@ html,
 body {
     overflow: hidden;
     height: 100%;
-    background-color: #8a5656; /* 设置背景颜色为灰色 */
+    background-color: #8b8b8b; /* 设置背景颜色为灰色 */
 }
 
 #settingsMenu {
