@@ -32,6 +32,39 @@
                     <option value="\r\n">\r\n</option>
                     <option value="\n">\n</option>
                     <option value="\r">\r</option>
+                <label for="dataBits">Data Bits</label>
+                <select id="dataBits">
+                    <option value="8">8</option>
+                    <option value="7">7</option>
+                    <option value="6">6</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+            <div class="setting-item">
+                <label for="stopBits">Stop Bits</label>
+                <select id="stopBits">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                </select>
+            </div>
+            <div class="setting-item">
+                <label for="parity">Parity</label>
+                <select id="parity">
+                    <option value="none">None</option>
+                    <option value="even">Even</option>
+                    <option value="odd">Odd</option>
+                </select>
+            </div>
+            <div class="setting-item">
+                <label for="bufferSize">Buffer Size</label>
+                <input type="number" id="bufferSize" value="1024" />
+            </div>
+            <div class="setting-item">
+                <label for="flowControl">Flow Control</label>
+                <select id="flowControl">
+                    <option value="none">None</option>
+                    <option value="hardware">Hardware</option>
+                    <option value="software">Software</option>
                 </select>
             </div>
             <div class="setting-item">

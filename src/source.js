@@ -45,10 +45,24 @@ async function connect() {
     document.getElementById("sendButton").disabled = false;
     document.getElementById("connect").disabled = true;
 
+    // 获取设置的值
+    const baudRate = document.getElementById('baudRate').value;
+    const dataBits = document.getElementById('dataBits').value;
+    const stopBits = document.getElementById('stopBits').value;
+    const parity = document.getElementById('parity').value;
+    const bufferSize = document.getElementById('bufferSize').value;
+    const flowControl = document.getElementById('flowControl').value;
+    const showInput = document.getElementById('showInput').checked;
+    const showTimestamps = document.getElementById('showTimestamps').checked;
+    const detectCtrl = document.getElementById('detectCtrl').checked;
+
     try {
         port = await navigator.serial.requestPort();
-        await port.open({ baudRate: 115200 });
+        await port.open({ baudRate: parseInt(baudRate) });
         console.log('Open');
+
+        // 这里可以使用 dataBits, stopBits, parity, bufferSize, flowControl 进行进一步的配置
+        // 以及 showInput, showTimestamps, detectCtrl 的值
 
         let decoder = new TextDecoderStream();
         inputDone = port.readable.pipeTo(decoder.writable);
