@@ -6,7 +6,7 @@
     <title>Serial Communication</title>
     <link href="style.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" /> -->
 </head>
 
 <body>
@@ -19,8 +19,8 @@
         <div id="settingsMenu" class="hidden">
             <h3>Settings</h3>
             <div class="setting-item">
-                <label for="serialConnection">Serial Connection</label>
-                <select id="serialConnection">
+                <label for="baudRate">Baud Rate</label>
+                <select id="baudRate">
                     <option value="115200">115200 baud</option>
                     <option value="9600">9600 baud</option>
                     <option value="4800">4800 baud</option>
@@ -44,14 +44,12 @@
                 <label for="detectCtrl"><input type="checkbox" id="detectCtrl" checked> Detect CTRL+C, CTRL+D</label>
             </div>
             <div class="button-group">
-                <button class="btn red">RESET</button>
-                <button class="btn">CANCEL</button>
+                <button class="btn red">RESET DEVICE</button>
             </div>
         </div>
     </div>
     <div class="wrapper">
-        <div id="notSupported">Sorry, Web Serial is not supported on this device, make sure you're running Chrome 78 or
-            later and have enabled the #enable-experimental-web-platform-features flag in chrome://flags</div>
+        <div id="notSupported" class="hidden"></div> <!-- 不支持消息元素 -->
         <div id="log"></div>
         <div>
             <div style="display: flex; align-items: center;">
@@ -59,6 +57,7 @@
                 <button class="btn waves-effect waves-light" id="sendButton" disabled>Send</button>
             </div>
         </div>
+        <div id="errorMessage" class="hidden"></div> <!-- 错误消息元素 -->
         <script src="source.js"></script>
 </body>
 
