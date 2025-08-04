@@ -6,7 +6,7 @@ chrome.runtime.onInstalled.addListener(() => {
 chrome.action.onClicked.addListener(() => {
     chrome.tabs.create({
         // chrome.windows.create({
-        url: "src/index.html"
+        url: "index.html"
         // ,type: "popup"
     });
 });

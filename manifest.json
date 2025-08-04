@@ -1,14 +1,18 @@
 {
     "manifest_version": 3,
-    "name": "串口监视器",
+    "name": "Web Serial Debug - 串口调试工具",
     "version": "1.0",
-    "description": "一个用于串口监视的 Chrome 插件。",
+    "description": "一个用于Web串口调试的Chrome扩展，支持串口通信、数据监控和脚本执行。",
+    "permissions": [
+        "serial"
+    ],
     "action": {
         "default_icon": {
             "16": "icon.png",
             "48": "icon.png",
             "128": "icon.png"
-        }
+        },
+        "default_title": "Web Serial Debug"
     },
     "background": {
         "service_worker": "background.js"
@@ -17,5 +21,11 @@
         "16": "icon.png",
         "48": "icon.png",
         "128": "icon.png"
-    }
+    },
+    "web_accessible_resources": [
+        {
+            "resources": ["index.html", "css/*", "js/*", "imgs/*"],
+            "matches": ["<all_urls>"]
+        }
+    ]
 }
